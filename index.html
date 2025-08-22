@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSIT Lost & Found Portal</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #ffeaea, #fff8f8);
+      color: #333;
+      background-attachment: fixed;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      text-align: center;
+      padding: 20px 10px;
+      border-bottom: 3px solid #b30000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img.logo {
+      height: 90px;
+      animation: float 4s ease-in-out infinite;
+    }
+    header img.banner {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 8px 0 0;
+      font-size: 28px;
+      color: #b30000;
+    }
+    header p {
+      margin: 0;
+      font-size: 16px;
+      color: #444;
+    }
+
+    /* Navbar */
+    nav {
+      background: #b30000;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 130px;
+      z-index: 999;
+    }
+    nav a {
+      color: white;
+      margin: 0 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ffe066;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+    h2 {
+      color: #b30000;
+      margin-bottom: 15px;
+    }
+
+    /* Grid Items */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .item-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      overflow: hidden;
+      transition: 0.3s ease;
+      animation: fadeIn 0.6s ease;
+    }
+    .item-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+    .item-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .item-info {
+      padding: 15px;
+    }
+    .item-info h3 {
+      margin: 0 0 10px;
+      color: #b30000;
+    }
+
+    /* Buttons */
+    .contact-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #b30000;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .contact-btn:hover {
+      background: #800000;
+      transform: scale(1.05);
+    }
+
+    /* Form */
+    .form-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      animation: fadeIn 0.6s ease;
+    }
+    .form-box label {
+      font-weight: bold;
+      color: #444;
+      display: block;
+      margin-top: 10px;
+    }
+    .form-box input, .form-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .form-box button {
+      margin-top: 15px;
+      background: #b30000;
+      color: white;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .form-box button:hover {
+      background: #800000;
+      transform: scale(1.05);
+    }
+    .preview {
+      margin-top: 10px;
+      max-height: 150px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #b30000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      z-index: 1100;
+    }
+    .fab:hover {
+      background: #800000;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #b30000;
+      color: white;
+      margin-top: 30px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="download.png" alt="PSIT Logo" class="logo">
+    <h1>PSIT Lost & Found Portal</h1>
+    <p>Helping PSIT students recover their belongings</p>
+    <img src="https://images.unsplash.com/photo-1524492449090-7f6e1a7d7f60" alt="Lost and Found Banner" class="banner">
+  </header>
+  
+  <!-- Navbar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#report-lost">Report Lost Item</a>
+    <a href="#report-found">Report Found Item</a>
+  </nav>
+  
+  <!-- Items Section -->
+  <div class="container">
+    <h2>Recently Reported Items</h2>
+    <div class="grid">
+      <!-- Item 1 -->
+      <div class="item-card">
+        <img src="https://images.unsplash.com/photo-1611077545663-f8b63a0db6c1" alt="Lost Wallet">
+        <div class="item-info">
+          <h3>Lost Wallet</h3>
+          <p><b>Description:</b> Black leather wallet with college ID inside.</p>
+          <p><b>Location:</b> Near the library</p>
+          <a href="mailto:someone@example.com" class="contact-btn">Contact Finder</a>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="item-card">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="Lost Bag">
+        <div class="item-info">
+          <h3>Lost Backpack</h3>
+          <p><b>Description:</b> Blue Skybag with notebooks and calculator inside.</p>
+          <p><b>Location:</b> Last seen in cafeteria</p>
+          <a href="mailto:lostbag@example.com" class="contact-btn">Contact Owner</a>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="item-card">
+        <img src="https://images.unsplash.com/photo-1512499617640-c2f999098c8e" alt="Found Phone">
+        <div class="item-info">
+          <h3>Found Mobile Phone</h3>
+          <p><b>Description:</b> Samsung Galaxy phone with black cover.</p>
+          <p><b>Location:</b> Found in classroom B-204</p>
+          <a href="mailto:finder@example.com" class="contact-btn">Contact Finder</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lost Item Form -->
+    <h2 id="report-lost">Report Lost Item</h2>
+    <div class="form-box">
+      <form onsubmit="alert('Your lost item report has been submitted!'); return false;">
+        <label for="lost-title">Item Title</label>
+        <input id="lost-title" type="text" placeholder="Lost Watch" required>
+        
+        <label for="lost-desc">Description</label>
+        <textarea id="lost-desc" rows="4" placeholder="Describe your lost item..." required></textarea>
+        
+        <label for="lost-location">Last Seen Location</label>
+        <input id="lost-location" type="text" placeholder="Library, Cafeteria, etc." required>
+        
+        <label for="lost-photo">Upload Photo</label>
+        <input id="lost-photo" type="file" accept="image/*" onchange="previewImage(event, 'lost-preview')">
+        <img id="lost-preview" class="preview">
+        
+        <label for="lost-email">Your Email</label>
+        <input id="lost-email" type="email" placeholder="you@example.com" required>
+        
+        <button type="submit">Submit Lost Item</button>
+      </form>
+    </div>
+    
+    <!-- Found Item Form -->
+    <h2 id="report-found">Report Found Item</h2>
+    <div class="form-box">
+      <form onsubmit="alert('Your found item report has been submitted!'); return false;">
+        <label for="found-title">Item Title</label>
+        <input id="found-title" type="text" placeholder="Found Keys" required>
+        
+        <label for="found-desc">Description</label>
+        <textarea id="found-desc" rows="4" placeholder="Describe the found item..." required></textarea>
+        
+        <label for="found-location">Found Location</label>
+        <input id="found-location" type="text" placeholder="Classroom, Parking, etc." required>
+        
+        <label for="found-photo">Upload Photo</label>
+        <input id="found-photo" type="file" accept="image/*" onchange="previewImage(event, 'found-preview')">
+        <img id="found-preview" class="preview">
+        
+        <label for="found-email">Your Email</label>
+        <input id="found-email" type="email" placeholder="you@example.com" required>
+        
+        <button type="submit">Submit Found Item</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Floating Action Button -->
+  <button class="fab" onclick="window.location='#report-lost'">+</button>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 PSIT Kanpur | Lost & Found Portal | Made with ❤️ for Students</p>
+  </footer>
+
+  <script>
+    function previewImage(event, previewId) {
+      const file = event.target.files[0];
+      const preview = document.getElementById(previewId);
+      if(file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
