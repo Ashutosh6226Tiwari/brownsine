@@ -235,7 +235,6 @@
   <div class="container">
     <h2>Recently Reported Items</h2>
     <div class="grid">
-      <!-- Item 1 -->
       <div class="item-card">
         <img src="https://images.unsplash.com/photo-1611077545663-f8b63a0db6c1" alt="Lost Wallet">
         <div class="item-info">
@@ -245,7 +244,6 @@
           <a href="mailto:someone@example.com" class="contact-btn">Contact Finder</a>
         </div>
       </div>
-      <!-- Item 2 -->
       <div class="item-card">
         <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="Lost Bag">
         <div class="item-info">
@@ -255,7 +253,6 @@
           <a href="mailto:lostbag@example.com" class="contact-btn">Contact Owner</a>
         </div>
       </div>
-      <!-- Item 3 -->
       <div class="item-card">
         <img src="https://images.unsplash.com/photo-1512499617640-c2f999098c8e" alt="Found Phone">
         <div class="item-info">
@@ -270,46 +267,42 @@
     <!-- Lost Item Form -->
     <h2 id="report-lost">Report Lost Item</h2>
     <div class="form-box">
-      <form onsubmit="alert('Your lost item report has been submitted!'); return false;">
-        <label for="lost-title">Item Title</label>
-        <input id="lost-title" type="text" placeholder="Lost Watch" required>
+      <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe" onsubmit="submittedLost()">
+        <label>Item Title</label>
+        <input name="entry.123456" type="text" placeholder="Lost Watch" required>
         
-        <label for="lost-desc">Description</label>
-        <textarea id="lost-desc" rows="4" placeholder="Describe your lost item..." required></textarea>
+        <label>Description</label>
+        <textarea name="entry.654321" rows="4" placeholder="Describe your lost item..." required></textarea>
         
-        <label for="lost-location">Last Seen Location</label>
-        <input id="lost-location" type="text" placeholder="Library, Cafeteria, etc." required>
+        <label>Last Seen Location</label>
+        <input name="entry.987654" type="text" placeholder="Library, Cafeteria, etc." required>
         
-        <label for="lost-photo">Upload Photo</label>
-        <input id="lost-photo" type="file" accept="image/*" onchange="previewImage(event, 'lost-preview')">
-        <img id="lost-preview" class="preview">
+        <label>Your Email</label>
+        <input name="entry.555666" type="email" placeholder="you@example.com" required>
         
-        <label for="lost-email">Your Email</label>
-        <input id="lost-email" type="email" placeholder="you@example.com" required>
+        <input type="hidden" name="entry.111222" value="Lost">
         
         <button type="submit">Submit Lost Item</button>
       </form>
     </div>
-    
+
     <!-- Found Item Form -->
     <h2 id="report-found">Report Found Item</h2>
     <div class="form-box">
-      <form onsubmit="alert('Your found item report has been submitted!'); return false;">
-        <label for="found-title">Item Title</label>
-        <input id="found-title" type="text" placeholder="Found Keys" required>
+      <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe" onsubmit="submittedFound()">
+        <label>Item Title</label>
+        <input name="entry.123456" type="text" placeholder="Found Keys" required>
         
-        <label for="found-desc">Description</label>
-        <textarea id="found-desc" rows="4" placeholder="Describe the found item..." required></textarea>
+        <label>Description</label>
+        <textarea name="entry.654321" rows="4" placeholder="Describe the found item..." required></textarea>
         
-        <label for="found-location">Found Location</label>
-        <input id="found-location" type="text" placeholder="Classroom, Parking, etc." required>
+        <label>Found Location</label>
+        <input name="entry.987654" type="text" placeholder="Classroom, Parking, etc." required>
         
-        <label for="found-photo">Upload Photo</label>
-        <input id="found-photo" type="file" accept="image/*" onchange="previewImage(event, 'found-preview')">
-        <img id="found-preview" class="preview">
+        <label>Your Email</label>
+        <input name="entry.555666" type="email" placeholder="you@example.com" required>
         
-        <label for="found-email">Your Email</label>
-        <input id="found-email" type="email" placeholder="you@example.com" required>
+        <input type="hidden" name="entry.111222" value="Found">
         
         <button type="submit">Submit Found Item</button>
       </form>
@@ -324,14 +317,15 @@
     <p>© 2025 PSIT Kanpur | Lost & Found Portal | Made with ❤️ for Students</p>
   </footer>
 
+  <!-- hidden iframe -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
   <script>
-    function previewImage(event, previewId) {
-      const file = event.target.files[0];
-      const preview = document.getElementById(previewId);
-      if(file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-      }
+    function submittedLost() {
+      alert("✅ Lost item saved to Google Sheets!");
+    }
+    function submittedFound() {
+      alert("✅ Found item saved to Google Sheets!");
     }
   </script>
 </body>
